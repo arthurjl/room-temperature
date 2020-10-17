@@ -1,1 +1,12 @@
-Hey there
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<title>Orange Juice Hologram</title>
+{% endblock %}
+
+{% block body %}
+<div class = "landingGradient">
+HEY THERE
+</div>
+{% endblock %}
