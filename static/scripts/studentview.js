@@ -11,7 +11,7 @@
     const interval = setInterval(function() {
       udpateTherm1("#happy_button")
       updateBigFace()
-    }, 1000);
+    }, 500);
 
     qs("#happy_button").addEventListener("click", () => postToEmotions("#happy_button"));
     qs("#sad_button").addEventListener("click", () => postToEmotions("#sad_button"));
