@@ -143,6 +143,18 @@ button{
   height: 7vw;
 }
 
+.big-face-container {
+  margin-left: 50px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-face {
+  /* background-color: black; */
+}
+
 .end-button {
   background-color: #FF613F;
   display: flex;

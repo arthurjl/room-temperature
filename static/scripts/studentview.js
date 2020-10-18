@@ -5,18 +5,36 @@
   window.addEventListener("load", init);
 
   function init() {
+    updateBigFace()
+    udpateTherm1("#happy_button")
+
     const interval = setInterval(function() {
       udpateTherm1("#happy_button")
+      updateBigFace()
     }, 5000);
 
     qs("#happy_button").addEventListener("click", () => makePost("#happy_button"));
     qs("#sad_button").addEventListener("click", () => makePost("#sad_button"));
     qs("#angry_button").addEventListener("click", () => makePost("#angry_button"));
-    qs("#confused_button").addEventListener("click", () => makePost("#confused_button"));
+    qs("#surprised_button").addEventListener("click", () => makePost("#surprised_button"));
     qs("#neutral_button").addEventListener("click", () => makePost("#neutral_button"));
     qs("#slow_button").addEventListener("click", () => makePost("#slow_button"));
     qs("#fast_button").addEventListener("click", () => makePost("#fast_button"));
 
+  }
+
+  function updateBigFace() {
+    let room_id = getRoomId("#happy_button");
+    let param = "" + room_id + "/active";
+
+    fetch(param)
+      .then(checkStatus)
+      .then(response => response.json())
+      .then((data) => {
+        console.log("YEEEEE" + data)
+        qs('#biggest-face').src = "/static/images/" + data.result + ".png";
+      })
+      .catch(handleError);
   }
 
   function makePost(id) {
