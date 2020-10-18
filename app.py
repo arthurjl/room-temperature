@@ -54,7 +54,7 @@ def record_emotion():
         temperature = emotion_to_sentiment(3, 5)
         return render_template('emotionsdb.html', emotions=emotions_all, active=active, temperature=temperature)
     else:
-        print("hello")
+        # print("hello")
         data = {}
         for k, v in request.form.items():
             print(k)
@@ -62,7 +62,7 @@ def record_emotion():
                 data[k] = float(v)
             else:
                 data[k] = int(v)
-        print(data)
+        # print(data)
         emotions_recording = Emotions(**data)
         db.session.add(emotions_recording)
         db.session.commit()
@@ -104,10 +104,10 @@ def active_emotion(mins, id, exclude_neutral=True):
     return active
 
 def recent_emotion_average(mins, id):
-    print("querying database with the following params")
-    print(mins, id)
+    # print("querying database with the following params")
+    # print(mins, id)
     df = pd.read_sql(Emotions.query.filter(Emotions.date_created > datetime.utcnow() - timedelta(minutes = mins), Emotions.room_id == id).statement, db.session.bind)
-    print(df)
+    # print(df)
     return df[emotions].mean()
 
 
@@ -155,11 +155,11 @@ def room(id):
     room_name = room_names.get(id, "EMPTY")
 
     reactions = Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 1), Reactions.room_id == id).all()
-    print(reactions)
+    # print(reactions)
     df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
-    print(df)
+    # print(df)
     total = df["reaction"].sum() / len(df) if len(df) > 0 else 0
-    print(total)
+    # print(total)
 
     return render_template('studentview.html', room_id=id, temp=f"{total * 100}%", room_name=room_name)
 
@@ -176,7 +176,7 @@ def get_pace(id):
 @app.route('/room/<int:id>/active', methods=['GET'])
 def yeet(id):
     active = active_emotion(1, id)
-    print("EWHLKJSD F" + str(active))
+    # print("EWHLKJSD F" + str(active))
     return jsonify(result=active)
 
 # Returns the temperature
@@ -190,14 +190,14 @@ def stuff(id):
     # total = df["reaction"].sum() / len(df) * 100 if len(df) > 0 else 0
     # return jsonify(result=total)
     result = emotion_to_sentiment(3, id) * 100
-    print(f"looking for stuff in {id}")
-    print (result)
+    # print(f"looking for stuff in {id}")
+    # print (result)
     return jsonify(result=result)
 
 @app.route('/room/<int:id>/push', methods=['POST'])
 def stuff2(id):
     reaction = int(request.form['react'])
-    print("REACTION\n\n\n", reaction)
+    # print("REACTION\n\n\n", reaction)
     new_reaction = Reactions(reaction=reaction, room_id=id)
 
     try:
@@ -205,9 +205,9 @@ def stuff2(id):
         db.session.commit()
         return redirect(f'/room/{id}/data')
     except:
-        print("\n\nn\ yi8kes")
+        # print("\n\nn\ yi8kes")
         return 'There was an issue adding your task'
-    print("\n\nPOSTED+!!!!!\n\n")
+    # print("\n\nPOSTED+!!!!!\n\n")
     return jsonify()
 
 

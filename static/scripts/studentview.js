@@ -33,12 +33,12 @@
     .then(checkStatus)
     .then(response => response.json())
     .then((data) => {
-      console.log("LKFJSDELFJSD \n\n\n" + data.result)
+      // console.log("LKFJSDELFJSD \n\n\n" + data.result)
       let goal = parseInt(data.result)
       let amount = Math.abs(goal)
-      console.log("YAEA OKAY GOAL " + goal)
+      // console.log("YAEA OKAY GOAL " + goal)
       document.documentElement.style.setProperty('--numAnimals', amount);
-      console.log("ARE YOU HAPAPYAA")
+      // console.log("ARE YOU HAPAPYAA")
       if (goal > 0) {  // Rabbit
         document.documentElement.style.setProperty('--displayRabbit', 'inline');
         document.documentElement.style.setProperty('--displayTurtle', 'none');
@@ -59,7 +59,7 @@
       .then(checkStatus)
       .then(response => response.json())
       .then((data) => {
-        console.log("YEEEEE" + data.result)
+        // console.log("YEEEEE" + data.result)
         qs('#biggest-face').src = "/static/images/" + data.result + ".png";
         qs('#biggest-face').src.max_width = "/static/images/" + data.result + ".png";
       })
@@ -67,7 +67,7 @@
   }
 
   function makePost(id) {
-    console.log("posting to reactions")
+    // console.log("posting to reactions")
     let room_id = getRoomId(id)
     let url = "" + room_id + "/push"
     let params = new FormData();
@@ -81,7 +81,7 @@
   }
 
   function postToEmotions(id) {
-    console.log("posting to emotion");
+    // console.log("posting to emotion");
     let room_id = getRoomId(id);
     let params = new FormData();
     params.append("room_id", room_id);
@@ -108,10 +108,10 @@
   }
 
   function udpateTherm1(id) {
-    console.log("What's up")
+    // console.log("What's up")
     let room_id = getRoomId(id)
     let param = "" + room_id + "/data";
-    console.log("YAYAAYAY " + param)
+    // console.log("YAYAAYAY " + param)
     fetch(param)
       .then(checkStatus)
       .then(response => response.json())
@@ -121,23 +121,23 @@
 
   function getRoomId(id) {
     let val = qs(id).value
-    console.log(val)
+    // console.log(val)
     return val
   }
 
   function getReact(id) {
     let val = qs(id).name
-    console.log("GET REACT" + val)
+    // console.log("GET REACT" + val)
     return val
   }
   
   function updateThermometer(temp) {
-    console.log("UPDATING" + temp.result)
+    // console.log("UPDATING" + temp.result)
     qs(".thermometer2").style.height = temp.result + "%";
   }
 
   function displayData(data) {
-    console.log(data)
+    // console.log(data)
     updateThermometer(data)
   }
 
