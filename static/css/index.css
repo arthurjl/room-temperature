@@ -3,6 +3,17 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+label{
+  display: block;
+  letter-spacing: 4px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+form{
+  text-align: center;
+}
+
 #main{
   display: grid;
   grid-template-columns: .5fr 2fr .5fr;
@@ -28,24 +39,38 @@ body {
   opacity: 0;
 }
 
-#course-input{
+#course{
   animation: fadeIn 1s ease-in-out 3.5s forwards;
   opacity: 0;
 }
 
-input[type=text]{
-  width: 50%;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: white;
-  padding: 15px 20px 15px 20px;
-  transition: width 0.5s ease-in-out;
+.label-text{
+  color: gray;
+  cursor: text;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase + transform(translateY(-34px));
+  transition: all 0.3s
 }
 
-input[type=text]:focus{
-  width: 75%;
+input[type=text]{
+  width: 200px;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 2px solid gray;
+  color: white;
+  font-size: 36px;
+  letter-spacing: -1px;
+  outline: 0;
+  padding: 5px 20px;
+  text-align: center;
+  background-color: transparent;
+  transition: all 0.3s
+}
+
+input[type=text]:focus + .label-text{
+  color: #F0F0F0;
+  font-size: 13px + transform(translateY(-74px));
 }
 
 @keyframes fadeIn{
