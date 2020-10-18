@@ -57,6 +57,7 @@ def record_emotion():
         print("hello")
         data = {}
         for k, v in request.form.items():
+            print(k)
             if k in emotions:
                 data[k] = float(v)
             else:

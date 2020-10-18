@@ -9,12 +9,8 @@ import numpy as np
 from fer import FER
 
 
-emotions = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
-<<<<<<< HEAD
+emotions = ["angry", "happy", "sad", "surprise", "neutral"]
 room_id = 69
-=======
-room_id = 5
->>>>>>> 28a7572bc5c414afe249ba0cc46b04c1407377d2
 
 while True:
     image = np.array(pyautogui.screenshot())
@@ -33,6 +29,7 @@ while True:
 
     data = {k:v for k, v in zip(emotions, emotion_vec)}
     data["room_id"] = room_id
+    # res = requests.post("http://127.0.0.1:5000/emotions", data=data)
     res = requests.post("http://18.223.166.141:8080/emotions", data=data)
     if res.ok:
         print("sent to server")
