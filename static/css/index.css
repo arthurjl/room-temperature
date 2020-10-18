@@ -66,9 +66,11 @@ input[type=text]:focus + .label-text{
 }
 
 #inner{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  grid-area: center;
+  align-self: center;
+  height: 100%;
+  margin: auto;
+  transform: translateY(-200px);
 }
 
 #intro{
