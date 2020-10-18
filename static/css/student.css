@@ -155,9 +155,28 @@ button{
   /* background-color: black; */
 }
 
+<<<<<<< HEAD
 #biggest-face {
   height: auto;
   max-width: 200%;
+=======
+.the-zoo {
+  display: flex;
+  margin-left: 50px;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.animal {
+  max-height: 10vh;
+  max-width: 10vh;
+  display: flex;
+}
+
+.animal img {
+  max-width: 100%;
+  height: auto;
+>>>>>>> aa6e43e4c32f4860fa79f5a55387961ce1d713d3
 }
 
 .end-button {
