@@ -47,11 +47,17 @@
       </div>
       <div class="status">
         <div class="reactions">
+          <div class="reaction-button">
+            <label for="yeet">
+              <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg"/>
+            </label>
+            <form action="/room/{{room_id}}" method="POST">
+              <input type="submit" name="react" value="1" id="yeet">
+            </form>
+          </div>
+
           <form action="/room/{{room_id}}" method="POST">
-            <input type="submit" name="react" value="1" id="yeet">
-          </form>
-          <form action="/room/{{room_id}}" method="POST">
-            <input type="submit" name="react" value="0" id="yeet">
+            <input type="submit" name="react" value="0" id="yoink">
           </form>
           <form style="width:50px;">
             <input type="button" value="what's up">
