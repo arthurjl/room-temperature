@@ -70,7 +70,7 @@ input[type=text]:focus + .label-text{
   align-self: center;
   height: 100%;
   margin: auto;
-  transform: translateY(400px);
+  transform: translateY(45%);
 }
 
 #intro{
