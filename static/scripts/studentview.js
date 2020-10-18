@@ -20,11 +20,25 @@
   }
 
   function makePost(id) {
-    console.log("TYALDJSFLK DSTTHAT SD\n\n\n\n")
-    let room_id = getRoomId(id)
-    let url = "" + room_id + "/push";
+    console.log("posting to emotion");
+    let room_id = getRoomId(id);
     let params = new FormData();
-    params.append("react", getReact(id))
+    params.append("room_id", room_id);
+    let react_id = getReact(id);
+    let reaction;
+    if (react_id == 0) {
+      reaction = "happy";
+    } else if (react_id == 1) {
+      reaction = "neutral";
+    } else if (react_id == 2) {
+      reaction = "sad";
+    } else if (react_id == 3) {
+      reaction = "angry";
+    } else {
+      reaction = "surprised";
+    }
+    params.append(reaction, 1.0)
+    let url = "../emotions"
     fetch(url, {method: "POST", body: params})
       .then(checkStatus)
       .then(response => response.json())
@@ -36,6 +50,7 @@
     console.log("What's up")
     let room_id = getRoomId(id)
     let param = "" + room_id + "/data";
+    console.log("YAYAAYAY " + param)
     fetch(param)
       .then(checkStatus)
       .then(response => response.json())
