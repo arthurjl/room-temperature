@@ -5,9 +5,9 @@
     window.addEventListener("load", init);
 
     function init() {
-        var stored = JSON.parse(localStorage.getItem('data'));
-        console.log(stored);
-        qs(".class-color").textContent = stored;
+        // var stored = JSON.parse(localStorage.getItem('data'));
+        // console.log(stored);
+        // qs(".class-color").textContent = stored;
         qs(".class-link").textContent = window.location.href;
     }
 

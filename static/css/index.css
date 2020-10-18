@@ -38,7 +38,7 @@ button:hover, :focus {
 }
 
 input[type=text]{
-  width: 200px;
+  /* width: 200px; */
   border: 0;
   border-bottom: 2px solid gray;
   color: white;

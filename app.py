@@ -141,6 +141,17 @@ def room(id):
     #         return redirect(f'/room/{id}')
     #     except:
     #         return 'There was an issue adding your task'
+    room_names = {
+        1: "CSE 332",
+        2: "CSE 344",
+        3: "LING 200",
+        4: "Deep Learning for Nerds",
+        5: "DubHacks Demo",
+        42: "Hitchhiker's Only",
+        69: "Funny Number",
+        420: "Yes",
+    }
+    room_name = room_names.get(id, "EMPTY")
 
     reactions = Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 1), Reactions.room_id == id).all()
     print(reactions)
@@ -149,7 +160,7 @@ def room(id):
     total = df["reaction"].sum() / len(df) if len(df) > 0 else 0
     print(total)
 
-    return render_template('studentview.html', room_id=id, temp=f"{total * 100}%", showRabbit=True, numHidAnimals=3)
+    return render_template('studentview.html', room_id=id, temp=f"{total * 100}%", room_name=room_name)
 
 @app.route('/room/<int:id>/react', methods=["GET"])
 def get_pace(id):
