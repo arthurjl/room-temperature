@@ -10,7 +10,11 @@ from fer import FER
 
 
 emotions = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
+<<<<<<< HEAD
 room_id = 69
+=======
+room_id = 5
+>>>>>>> 28a7572bc5c414afe249ba0cc46b04c1407377d2
 
 while True:
     image = np.array(pyautogui.screenshot())
