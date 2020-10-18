@@ -9,12 +9,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
     <script src="{{url_for('static',filename='scripts/studentview.js')}}"></script>
-    <style>
-      /* .thermometer2 {
-        height: {{ temp }};
-      } */
-    </style>
-  
+
   </head>
   <body>
     <h1>Your <span class="class-color">CSE 440</span> Room Temperature</h1>
@@ -49,6 +44,12 @@
         </div>
       </div>
       <div class="status">
+        <div class="big-face-container">
+          <div class="big-face">
+            <img src="/static/images/happy.png" id="biggest-face">
+          </div>
+        </div>
+
         <div class="reactions">
           <!-- <div class="reaction-button">
             <label for="yeet">
@@ -75,8 +76,8 @@
             <img src="/static/images/angry.png" class="react-button">
           </button>
 
-          <button id="confused_button" value="{{room_id}}" name=4>
-            <img src="/static/images/confused.png" class="react-button">
+          <button id="surprised_button" value="{{room_id}}" name=4>
+            <img src="/static/images/surprise.png" class="react-button">
           </button>
 
           <button id="slow_button" value="{{room_id}}" name=5>

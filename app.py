@@ -145,7 +145,17 @@ def room(id):
     print(df)
     total = df["reaction"].sum() / len(df) if len(df) > 0 else 0
     print(total)
+
     return render_template('studentview.html', room_id=id, temp=f"{total * 100}%")
+
+@app.route('/room/<int:id>/active', methods=['GET'])
+def yeet(id):
+    active = active_emotion(1, id)
+    print(active)
+    if (np.isnan):
+        print("YEEE")
+        return jsonify(result="happy")
+    return jsonify(result=active)
 
 # Returns the temperature
 @app.route('/room/<int:id>/data', methods=['GET'])
