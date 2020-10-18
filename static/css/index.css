@@ -73,13 +73,13 @@ input[type=text]:focus + .label-text{
 }
 
 #intro{
-  animation: fadeIn 1s ease-in-out forwards;
+  animation: fadeIn 0.5s ease-in-out forwards;
   opacity: 0;
   text-align: center;
 }
 
 #course{
-  animation: fadeIn 1s ease-in-out 1.5s forwards;
+  animation: fadeIn 0.5s ease-in-out 1s forwards;
   opacity: 0;
 }
 
