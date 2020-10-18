@@ -155,6 +155,24 @@ button{
   /* background-color: black; */
 }
 
+.the-zoo {
+  display: flex;
+  margin-left: 50px;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.animal {
+  max-height: 10vh;
+  max-width: 10vh;
+  display: flex;
+}
+
+.animal img {
+  max-width: 100%;
+  height: auto;
+}
+
 .end-button {
   background-color: #FF613F;
   display: flex;
