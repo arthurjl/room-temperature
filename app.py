@@ -156,7 +156,7 @@ def get_pace(id):
         result = 5
     elif result < -5:
         result = -5
-    return result
+    return jsonify(result=result)
 
 @app.route('/room/<int:id>/active', methods=['GET'])
 def yeet(id):
