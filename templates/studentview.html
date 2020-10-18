@@ -6,6 +6,8 @@
     <title>Room Temperature</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="{{url_for('static',filename='css/student.css')}}" rel="stylesheet"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
     <script src="{{url_for('static',filename='scripts/studentview.js')}}"></script>
     <style>
       /* .thermometer2 {
@@ -57,25 +59,35 @@
             </form>
           </div> -->
 
-          <button id="yipyip" value="{{room_id}}" name=1>
-            Hello there
+          <button id="happy_button" value="{{room_id}}" name=0>
+            <img src="/static/images/happy.png" class="react-button">
           </button>
 
-          <button id="yopyop" value="{{room_id}}" name=0>
-            Goodbye there
+          <button id="neutral_button" value="{{room_id}}" name=1>
+            <img src="/static/images/neutral.png" class="react-button">
           </button>
 
-          <form action="/room/{{room_id}}" method="POST">
-            <input type="submit" name="react" value="0" id="yoink">
-          </form>
-          <form style="width:50px;">
-            <input type="button" value="what's up">
-          </form>
-          <form style="width:50px;">
-            <input type="button" value="what's up">
-          </form>
+          <button id="sad_button" value="{{room_id}}" name=2>
+            <img src="/static/images/sad.png" class="react-button">
+          </button>
+
+          <button id="angry_button" value="{{room_id}}" name=3>
+            <img src="/static/images/angry.png" class="react-button">
+          </button>
+
+          <button id="confused_button" value="{{room_id}}" name=4>
+            <img src="/static/images/confused.png" class="react-button">
+          </button>
+
+          <button id="slow_button" value="{{room_id}}" name=5>
+            <img src="/static/images/slow.png" class="react-button">
+          </button>
+
+          <button id="fast_button" value="{{room_id}}" name=6>
+            <img src="/static/images/speed.png" class="react-button">
+          </button>
         </div>
-        <div class="pace-status"></div>
+        <!-- <div class="pace-status"></div> -->
       </div>
     </div>
 

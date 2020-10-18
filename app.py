@@ -65,6 +65,7 @@ def room(id):
     print(total)
     return render_template('studentview.html', room_id=id, temp=f"{total * 100}%")
 
+# Returns the temperature
 @app.route('/room/<int:id>/data', methods=['GET'])
 def stuff(id):
     # return jsonify(result=random.randint(0, 1) * 100)
@@ -73,6 +74,8 @@ def stuff(id):
     df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
     print(df)
     total = df["reaction"].sum() / len(df) * 100 if len(df) > 0 else 0
+
+    # MAKE SURE TO JSONIFY
     return jsonify(result=total)
 
 @app.route('/room/<int:id>/push', methods=['POST'])

@@ -34,7 +34,7 @@ p {
 
 .content {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .temp-box {
@@ -111,6 +111,7 @@ p {
   border-radius: 40px;
   background-color: red;
   bottom: 0;
+  height: 70%;
   position: absolute;
   transition: height 0.25s ease-in;
 }
@@ -118,13 +119,28 @@ p {
 .status {
   display: flex;
   flex-direction: column;
-  width: 20vw;
-  height: 75vh;
   padding-right: 20px;
+  justify-content: flex-end;
 }
 
 .reactions {
-  height: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 50px;
+}
+
+button{
+  border:0;
+  background:none;
+  /*And other css to remove the default button property */    
+}
+
+.react-button {
+  max-width: 100px;
+  max-height: 100px;
+  width: 7vw;
+  height: 7vw;
 }
 
 .end-button {

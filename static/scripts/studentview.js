@@ -6,11 +6,16 @@
 
   function init() {
     const interval = setInterval(function() {
-      udpateTherm1("#yipyip")
+      udpateTherm1("#happy_button")
     }, 5000);
 
-    qs("#yipyip").addEventListener("click", () => makePost("#yipyip"));
-    qs("#yopyop").addEventListener("click", () => makePost("#yopyop"));
+    qs("#happy_button").addEventListener("click", () => makePost("#happy_button"));
+    qs("#sad_button").addEventListener("click", () => makePost("#sad_button"));
+    qs("#angry_button").addEventListener("click", () => makePost("#angry_button"));
+    qs("#confused_button").addEventListener("click", () => makePost("#confused_button"));
+    qs("#neutral_button").addEventListener("click", () => makePost("#neutral_button"));
+    qs("#slow_button").addEventListener("click", () => makePost("#slow_button"));
+    qs("#fast_button").addEventListener("click", () => makePost("#fast_button"));
 
   }
 
