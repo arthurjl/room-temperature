@@ -3,23 +3,83 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+h1 {
+  font-size: 24pt;
+  font-weight: lighter;
+}
+
+h1, h2, .content {
+  padding-left: 20px;
+}
+
+h2 {
+  font-size: 16pt;
+  font-weight: lighter;
+}
+
+p {
+  font-size: 16pt;
+  font-weight: bold;
+
+}
+
+.class-color {
+  font-weight: bold;
+  color: white;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
 .temp-box {
   display: flex;
   flex-direction: row;
   background-color: white;
-  height: 70vh;
+  height: 75vh;
   width: 30vw;
-  left: 30px;
   top: 185px;
   border-radius: 40px;
-
 }
 
 .temp-numbers {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.numbers {
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width:50%;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+
+.dashes {
+  height: 80%;
+  width: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash {
+  height: 10%;
+  width: 10px;
+  border-top: 5px solid grey;
+}
+
+.long-dash {
+  height: 10%;
+  width: 20px;
+  border-top: 5px solid grey;
+}
+
+.long-dash-clear {
+  height: 10%;
 }
 
 .temp-visual {
@@ -28,12 +88,41 @@ body {
   align-items: center;
   justify-content: center;
   width: 50%;
-
 }
 
 .thermometer {
   height: 80%;
-  width: 70px;
+  width: 60px;
   border-radius: 40px;
   background-color: skyblue;
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 75vh;
+  padding-right: 20px;
+
+}
+
+.reactions {
+  height: 60%;
+}
+
+.end-button {
+  background-color: #FF613F;
+}
+
+.pace-status, .end-button {
+  height: 15%;
+  margin-top: 5%;
+}
+
+.reactions, .pace-status {
+  background-color: white;
+}
+
+.reactions, .pace-status, .end-button {
+  border-radius: 20px;
 }
