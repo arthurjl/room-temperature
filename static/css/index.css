@@ -49,13 +49,13 @@ form{
   cursor: text;
   font-size: 20px;
   line-height: 20px;
-  text-transform: uppercase + transform(translateY(-34px));
+  text-transform: uppercase;
+  transform: translateY(-34px);
   transition: all 0.3s
 }
 
 input[type=text]{
   width: 200px;
-  box-sizing: border-box;
   border: 0;
   border-bottom: 2px solid gray;
   color: white;
@@ -70,7 +70,8 @@ input[type=text]{
 
 input[type=text]:focus + .label-text{
   color: #F0F0F0;
-  font-size: 13px + transform(translateY(-74px));
+  font-size: 13px;
+  transform: translateY(-74px);
 }
 
 @keyframes fadeIn{
