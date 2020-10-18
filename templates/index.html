@@ -5,14 +5,22 @@
     <meta charset="UTF-8">
     <title>Welcome to RoomTemp!</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/welcome.css')}}" rel="stylesheet"/>
+    <link href="{{url_for('static',filename='css/index.css')}}" rel="stylesheet"/>
   </head>
   <body>
     <div id="main">
       <div id="inner">
         <div id="intro">
-          <h1>RoomTemp</h1>
-          <p class="subtitle">Satisfactory online learning for both instructors and students</p>
+          <h1>Welcome to RoomTemp!</h1>
+        </div>
+        <div id="subtitle">
+          <p class="subtitle">Creating a satisfactory online learning for both instructors and students</p>
+        </div>
+        <div id="course">
+          <form>
+            <label for="course">Course Name</label>
+            <input type="text" id="course" name="course"/>
+          </form>
         </div>
       </div>
     </div>
