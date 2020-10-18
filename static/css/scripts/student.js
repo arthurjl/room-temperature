@@ -6,6 +6,7 @@
 
     function init() {
         let classname = qs("#classInput").value;
+        console.log(classname);
         qs(".class-color").textContent = classname;
     }
 
