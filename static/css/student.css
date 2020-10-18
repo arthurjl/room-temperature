@@ -34,7 +34,7 @@ p {
 
 .content {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .temp-box {
@@ -46,6 +46,7 @@ p {
   top: 185px;
   border-radius: 40px;
   padding: 15px;
+  max-width: 150px;
 }
 
 .temp-numbers {
@@ -61,11 +62,11 @@ p {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
 
 .dashes {
-  height: 80%;
+  height: 100%;
   width: 20px;
   display: flex;
   flex-direction: column;
@@ -128,6 +129,7 @@ p {
   flex-wrap: wrap;
   justify-content: center;
   margin-left: 50px;
+  padding: 10px;
 }
 
 button{
@@ -180,7 +182,7 @@ button{
 :root {
   --displayRabbit: none;
   --displayTurtle: inline;
-  --numAnimals: 2;
+  --numAnimals: 0;
 }
 
 .animal img {

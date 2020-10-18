@@ -97,7 +97,10 @@ def active_emotion(mins, id, exclude_neutral=True):
     avg_emotion_vec = recent_emotion_average(mins, id)
     if exclude_neutral:
         del avg_emotion_vec["neutral"]
-    return avg_emotion_vec.idxmax(axis=1)
+    active = avg_emotion_vec.idxmax(axis=1)
+    if avg_emotion_vec.max() == 0.0 or not isinstance(active, str):
+        return "happy"
+    return active
 
 def recent_emotion_average(mins, id):
     print("querying database with the following params")
@@ -162,9 +165,6 @@ def get_pace(id):
 def yeet(id):
     active = active_emotion(1, id)
     print("EWHLKJSD F" + str(active))
-    if not isinstance(active, str):
-        print("YEEE")
-        return jsonify(result="happy")
     return jsonify(result=active)
 
 # Returns the temperature
