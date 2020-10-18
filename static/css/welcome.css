@@ -1,0 +1,42 @@
+body {
+  background-color: skyblue;
+  font-family: "Montserrat", sans-serif;
+}
+
+#main{
+  display: grid;
+  grid-template-columns: .5fr 2fr .5fr;
+  grid-gap: 10px;
+  grid-template-areas: ". center .";
+  height: 100%;        
+}
+
+#inner{
+  grid-area: center;
+  align-self: center;
+  justify-self: center;
+}
+
+#intro{
+  animation: chatblips .5s ease-in-out 1.9s forwards;
+  opacity: 0;
+}
+
+@keyframes chatblips{
+  /* taken from http://angrytools.com/css/animation/ for bounce-in animation*/
+  0%{
+    opacity: 0;
+    transform: scale(.3);
+  }
+  50%{
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  70%{
+    transform: scale(0.9);
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
