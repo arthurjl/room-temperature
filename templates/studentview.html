@@ -51,37 +51,39 @@
         </div>
 
         <div class="the-zoo">
+          {% if showRabbit %}
           <div class="animal">
-            <img src="/static/images/rabbit.gif">
+            <img src="/static/images/rabbit.gif" {% if numHidAnimals > 4 %} style="opacity: 0;" {% endif %}>
           </div>
           <div class="animal">
-            <img src="/static/images/rabbit.gif">
+            <img src="/static/images/rabbit.gif" {% if numHidAnimals > 3 %} style="opacity: 0;" {% endif %}>
           </div>
           <div class="animal">
-            <img src="/static/images/rabbit.gif">
+            <img src="/static/images/rabbit.gif" {% if numHidAnimals > 2 %} style="opacity: 0;" {% endif %}>
           </div>
           <div class="animal">
-            <img src="/static/images/rabbit.gif">
+            <img src="/static/images/rabbit.gif" {% if numHidAnimals > 1 %} style="opacity: 0;" {% endif %}>
           </div>
           <div class="animal">
-            <img src="/static/images/rabbit.gif">
+            <img src="/static/images/rabbit.gif" {% if numHidAnimals > 0 %} style="opacity: 0;" {% endif %}>
           </div>
-
+          {% else %}
           <div class="animal">
-            <img src="/static/images/turtle.gif">
-          </div>
-          <div class="animal">
-            <img src="/static/images/turtle.gif">
+            <img src="/static/images/turtle.gif" {% if numHidAnimals > 4 %} style="opacity: 0;" {% endif %}>
           </div>
           <div class="animal">
-            <img src="/static/images/turtle.gif">
+            <img src="/static/images/turtle.gif" {% if numHidAnimals > 3 %} style="opacity: 0;" {% endif %}>
           </div>
           <div class="animal">
-            <img src="/static/images/turtle.gif">
+            <img src="/static/images/turtle.gif" {% if numHidAnimals > 2 %} style="opacity: 0;" {% endif %}>
           </div>
           <div class="animal">
-            <img src="/static/images/turtle.gif">
+            <img src="/static/images/turtle.gif" {% if numHidAnimals > 1 %} style="opacity: 0;" {% endif %}>
           </div>
+          <div class="animal">
+            <img src="/static/images/turtle.gif" {% if numHidAnimals > 0 %} style="opacity: 0;" {% endif %}>
+          </div>
+          {% endif %}
         </div>
 
         <div class="reactions">
