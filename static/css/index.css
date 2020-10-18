@@ -15,7 +15,7 @@ body {
   grid-area: center;
   align-self: center;
   justify-self: center;
-  height: 60%;
+  height: 50%;
 }
 
 #intro{
@@ -28,13 +28,13 @@ body {
   opacity: 0;
 }
 
-#class-input{
+#course-input{
   animation: fadeIn 1s ease-in-out 3.5s forwards;
   opacity: 0;
 }
 
-.class-input{
-  width: 100px;
+input[type=text]{
+  width: 50%;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -44,7 +44,7 @@ body {
   transition: width 0.5s ease-in-out;
 }
 
-.class-input:focus{
+input[type=text]:focus{
   width: 75%;
 }
 
