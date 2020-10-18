@@ -10,7 +10,7 @@ from fer import FER
 
 
 emotions = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
-room_id = 1
+room_id = 69
 
 while True:
     image = np.array(pyautogui.screenshot())
@@ -29,5 +29,9 @@ while True:
 
     data = {k:v for k, v in zip(emotions, emotion_vec)}
     data["room_id"] = room_id
-    res = requests.post("http://127.0.0.1:5000/emotions", data=data)
+    res = requests.post("http://18.223.166.141:8080/emotions", data=data)
+    if res.ok:
+        print("sent to server")
+    else:
+        print(res.status_code)
     print(data)
