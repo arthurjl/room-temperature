@@ -158,7 +158,7 @@ button{
 .the-zoo {
   display: flex;
   margin-left: 50px;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-direction: row;
 }
 
