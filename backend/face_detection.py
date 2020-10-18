@@ -30,9 +30,4 @@ while True:
     data = {k:v for k, v in zip(emotions, emotion_vec)}
     data["room_id"] = room_id
     res = requests.post("http://127.0.0.1:5000/emotions", data=data)
-    if res.ok:
-        print("hello")
-    # res = requests.post("http://127.0.0.1:5000/", data={"content":"hello"})
-    # if res.ok:
-    #     print("hello")
     print(data)

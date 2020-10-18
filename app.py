@@ -24,6 +24,35 @@ class Rooms(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
 
+class Emotions(db.Model):
+    __tablename__ = "Emotions"
+    id = db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    angry = db.Column(db.Float, default=0.0)
+    disgust = db.Column(db.Float, default=0.0)
+    fear = db.Column(db.Float, default=0.0)
+    happy = db.Column(db.Float, default=0.0)
+    sad = db.Column(db.Float, default=0.0)
+    surprise = db.Column(db.Float, default=0.0)
+    neutral = db.Column(db.Float, default=0.0)
+    room_id = db.Column(db.Integer, db.ForeignKey('Rooms.id'))
+
+    def __repr__(self):
+        return f'<Angry {self.angry}; Disgust {self.disgust}; Fear {self.fear}; Happy {self.happy}; Sad {self.sad}; Surprise {self.surprise}; Neutral {self.neutral}>'
+
+@app.route('/emotions', methods=["POST", "GET"])
+def record_emotion():
+    if request.method == "GET":
+        emotions = Emotions.query.all()
+        return render_template('emotionsdb.html', emotions=emotions)
+    else:
+        print(request.form)
+        emotions_recording = Emotions(**request.form)
+        db.session.add(emotions_recording)
+        db.session.commit()
+        return str(emotions_recording)
+
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
