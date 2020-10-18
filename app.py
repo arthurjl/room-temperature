@@ -1,7 +1,9 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timedelta
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+import pandas as pd
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///temperature.db'
@@ -10,12 +12,12 @@ db = SQLAlchemy(app)
 class Reactions(db.Model):
     __tablename__ = 'Reactions'
     id = db.Column(db.Integer, primary_key=True)
-    reaction = db.Column(db.String(200), nullable=False)
+    reaction = db.Column(db.Integer, nullable=False)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     room_id = db.Column(db.Integer, db.ForeignKey('Rooms.id'))
 
     def __repr__(self):
-        return f'<Reaction {id} : Reaction {reaction} : room {room_id}>'
+        return f'<Reaction {self.id} : Reaction {self.reaction} : room {self.room_id}>'
 
 class Rooms(db.Model):
     __tablename__ = 'Rooms'
@@ -26,7 +28,7 @@ class Rooms(db.Model):
 def index():
     if request.method == 'POST':
         reaction = request.form['content']
-        room_id = 3 # TODO
+        room_id = request.form['room_id']
         new_reaction = Reactions(reaction=reaction, room_id=room_id)
 
         try:
@@ -42,8 +44,13 @@ def index():
 
 @app.route('/room/<int:id>', methods=['GET'])
 def room(id):
-    reactions = Reactions.query.order_by(Reactions.date_created).all()
-    return render_template('room.html', temp=5, room_id=id)
+    reactions = Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 1), Reactions.room_id == id).all()
+    print(reactions)
+    df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
+    print(df)
+    total = df["reaction"].sum() / len(df)
+    print(total)
+    return render_template('room.html', temp=total, room_id=id)
 
 
 # @app.route('/delete/<int:id>')
