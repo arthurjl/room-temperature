@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Emotions DB</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="content">
+    <h1 style="text-align: center">Emotions</h1>
+    {% if emotions|length < 1 %}
+    <h4 style="text-align: center">There are no emotions</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>date_created</th>
+            <th>angry</th>
+            <th>disgust</th>
+            <th>fear</th>
+            <th>happy</th>
+            <th>sad</th>
+            <th>surprise</th>
+            <th>neutral</th>
+            <th>room_id</th>
+        </tr>
+        {% for emotion in emotions %}
+            <tr>
+                <td>{{ emotion.date_created.date() }}</td>
+                <td>{{ emotion.angry }}</td>
+                <td>{{ emotion.disgust }}</td>
+                <td>{{ emotion.fear }}</td>
+                <td>{{ emotion.happy }}</td>
+                <td>{{ emotion.sad }}</td>
+                <td>{{ emotion.surprise }}</td>
+                <td>{{ emotion.neutral }}</td>
+                <td>{{ emotion.room_id }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <h3 style="text-align: center">Temperature: {{ temperature }}</h3>
+    <h3 style="text-align: center">Active Emotion: {{ active }}</h3>
+</div>
+{% endblock %}

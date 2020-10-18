@@ -1,3 +1,5 @@
+import math
+import numpy as np
 from flask import Flask, render_template, url_for, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
@@ -9,6 +11,8 @@ import random
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///temperature.db'
 db = SQLAlchemy(app)
+
+emotions = ["angry", "happy", "sad", "surprise", "neutral"]
 
 class Reactions(db.Model):
     __tablename__ = 'Reactions'
@@ -24,6 +28,74 @@ class Rooms(db.Model):
     __tablename__ = 'Rooms'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
+
+class Emotions(db.Model):
+    __tablename__ = "Emotions"
+    id = db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+    angry = db.Column(db.Float, default=0.0)
+    disgust = db.Column(db.Float, default=0.0)
+    fear = db.Column(db.Float, default=0.0)
+    happy = db.Column(db.Float, default=0.0)
+    sad = db.Column(db.Float, default=0.0)
+    surprise = db.Column(db.Float, default=0.0)
+    neutral = db.Column(db.Float, default=0.0)
+    room_id = db.Column(db.Integer, db.ForeignKey('Rooms.id'))
+
+    def __repr__(self):
+        return f'<Angry {self.angry}; Disgust {self.disgust}; Fear {self.fear}; Happy {self.happy}; Sad {self.sad}; Surprise {self.surprise}; Neutral {self.neutral}>'
+
+@app.route('/emotions', methods=["POST", "GET"])
+def record_emotion():
+    if request.method == "GET":
+        emotions = Emotions.query.all()
+        active = active_emotion(1, 1)
+        temperature = emotion_to_sentiment(3, 1)
+        return render_template('emotionsdb.html', emotions=emotions, active=active, temperature=temperature)
+    else:
+        print(request.form)
+        emotions_recording = Emotions(**request.form)
+        db.session.add(emotions_recording)
+        db.session.commit()
+        return str(emotions_recording)
+
+def emotion_to_sentiment(mins, id, sqrt=True, weight=1):
+    avg_emotion_vec = recent_emotion_average(mins, id)
+    if sqrt:
+        avg_emotion_vec = avg_emotion_vec.apply(math.sqrt)
+
+    # sentiment weights
+    happy = 1
+    surprise = 1 / math.sqrt(2)
+    sad = -1
+    angry = -1 / math.sqrt(2)
+
+    # mean temperature
+    mean = 0.7
+
+    # let neutral = 1.0 to be the mean temperature
+    # multiply each emotion by the weight to determine the amount of change
+    neg_multiplier = 1
+    temp = mean + weight * (avg_emotion_vec["happy"] * happy + avg_emotion_vec["surprise"] 
+        * surprise + neg_multiplier * (avg_emotion_vec["sad"] * sad + avg_emotion_vec["angry"] * angry))
+
+    if temp > 1:
+        temp = 1
+    elif np.isnan(temp):
+        return mean
+    return temp
+
+def active_emotion(mins, id, exclude_neutral=True):
+    avg_emotion_vec = recent_emotion_average(mins, id)
+    if exclude_neutral:
+        del avg_emotion_vec["neutral"]
+    return avg_emotion_vec.idxmax(axis=1)
+
+def recent_emotion_average(mins, id):
+    df = pd.read_sql(Emotions.query.filter(Emotions.date_created > datetime.utcnow() - timedelta(minutes = mins), Emotions.room_id == id).statement, db.session.bind)
+    print(df)
+    return df[emotions].mean()
+
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -68,15 +140,16 @@ def room(id):
 # Returns the temperature
 @app.route('/room/<int:id>/data', methods=['GET'])
 def stuff(id):
-    # return jsonify(result=random.randint(0, 1) * 100)
-    reactions = Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 1), Reactions.room_id == id).all()
-    print(reactions)
-    df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
-    print(df)
-    total = df["reaction"].sum() / len(df) * 100 if len(df) > 0 else 0
-
-    # MAKE SURE TO JSONIFY
-    return jsonify(result=total)
+    # # return jsonify(result=random.randint(0, 1) * 100)
+    # reactions = Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 1), Reactions.room_id == id).all()
+    # print(reactions)
+    # df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
+    # print(df)
+    # total = df["reaction"].sum() / len(df) * 100 if len(df) > 0 else 0
+    # return jsonify(result=total)
+    result = emotion_to_sentiment(3, id) * 100
+    print (result)
+    return jsonify(result=result)
 
 @app.route('/room/<int:id>/push', methods=['POST'])
 def stuff2(id):
