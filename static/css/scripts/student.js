@@ -5,9 +5,9 @@
     window.addEventListener("load", init);
 
     function init() {
-        let classname = qs("#classInput").value;
-        console.log(classname);
-        qs(".class-color").textContent = classname;
+        var stored = JSON.parse(localStorage.getItem('data'));
+        console.log(stored);
+        qs(".class-color").textContent = stored;
     }
 
     /**
