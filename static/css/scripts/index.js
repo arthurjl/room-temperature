@@ -1,12 +1,11 @@
 "use strict";
 const swup = new Swup();
 
-var btn = ui.btn;
-
 (function() {
 	window.addEventListener("load", init);
 
 	function init() {
+		var btn = ui.btn;
 		btn.addEventListener('click', saveData);
 	}
 
