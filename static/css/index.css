@@ -66,8 +66,10 @@ input[type=text]:focus + .label-text{
 }
 
 #inner{
+  display: flex;
   grid-area: center;
   align-self: center;
+  align-items: center;
   justify-self: center;
   height: 100%;
   margin: auto;
