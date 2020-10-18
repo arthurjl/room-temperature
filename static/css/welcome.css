@@ -8,16 +8,16 @@ body {
   grid-template-columns: .5fr 2fr .5fr;
   grid-gap: 10px;
   grid-template-areas: ". center .";
-  height: 100%;        
+  height: 100%;
 }
 
-#inner{
+#inner {
   grid-area: center;
   align-self: center;
   justify-self: center;
 }
 
-#intro{
+#intro {
   animation: chatblips .5s ease-in-out 1.9s forwards;
   opacity: 0;
 }
