@@ -152,8 +152,10 @@ def room(id):
 def get_pace(id):
     df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
     result = int(df["reaction"].sum() / 3)
-    if result > 10:
-        result = 10
+    if result > 5:
+        result = 5
+    elif result < -5:
+        result = -5
     return result
 
 @app.route('/room/<int:id>/active', methods=['GET'])
