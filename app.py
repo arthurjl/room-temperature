@@ -148,7 +148,7 @@ def room(id):
 
     return render_template('studentview.html', room_id=id, temp=f"{total * 100}%")
 
-@app.route('room/<int: id>/react', methods=["GET"])
+@app.route('/room/<int:id>/react', methods=["GET"])
 def get_pace(id):
     df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
     result = int(df["reaction"].sum() / 3)
