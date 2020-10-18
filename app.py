@@ -1,9 +1,10 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import pandas as pd
+import random
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///temperature.db'
@@ -42,15 +43,31 @@ def index():
         reactions = Reactions.query.order_by(Reactions.date_created).all()
         return render_template('index.html', tasks=reactions)
 
-@app.route('/room/<int:id>', methods=['GET'])
+@app.route('/room/<int:id>', methods=['GET', 'POST'])
 def room(id):
+    if request.method == 'POST':
+        reaction = int(request.form['react'])
+        print("REACTION\n\n\n", reaction)
+        new_reaction = Reactions(reaction=reaction, room_id=id)
+
+        try:
+            db.session.add(new_reaction)
+            db.session.commit()
+            return redirect(f'/room/{id}')
+        except:
+            return 'There was an issue adding your task'
+
     reactions = Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 1), Reactions.room_id == id).all()
     print(reactions)
     df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
     print(df)
-    total = df["reaction"].sum() / len(df)
+    total = df["reaction"].sum() / len(df) if len(df) > 0 else 0
     print(total)
-    return render_template('room.html', temp=total, room_id=id)
+    return render_template('studentview.html', room_id=id, temp=f"{total * 100}%")
+
+@app.route('/_stuff', methods=['GET'])
+def stuff():
+    return jsonify(result=random.randint(0, 10))
 
 
 # @app.route('/delete/<int:id>')
