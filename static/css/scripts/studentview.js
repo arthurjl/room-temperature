@@ -1,4 +1,5 @@
 "use strict";
+const swup = new Swup();
 
 (function() {
 
