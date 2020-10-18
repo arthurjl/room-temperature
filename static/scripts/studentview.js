@@ -11,13 +11,13 @@
     const interval = setInterval(function() {
       udpateTherm1("#happy_button")
       updateBigFace()
-    }, 5000);
+    }, 1000);
 
-    qs("#happy_button").addEventListener("click", () => makePost("#happy_button"));
-    qs("#sad_button").addEventListener("click", () => makePost("#sad_button"));
-    qs("#angry_button").addEventListener("click", () => makePost("#angry_button"));
-    qs("#surprised_button").addEventListener("click", () => makePost("#surprised_button"));
-    qs("#neutral_button").addEventListener("click", () => makePost("#neutral_button"));
+    qs("#happy_button").addEventListener("click", () => postToEmotions("#happy_button"));
+    qs("#sad_button").addEventListener("click", () => postToEmotions("#sad_button"));
+    qs("#angry_button").addEventListener("click", () => postToEmotions("#angry_button"));
+    qs("#surprised_button").addEventListener("click", () => postToEmotions("#surprised_button"));
+    qs("#neutral_button").addEventListener("click", () => postToEmotions("#neutral_button"));
     qs("#slow_button").addEventListener("click", () => makePost("#slow_button"));
     qs("#fast_button").addEventListener("click", () => makePost("#fast_button"));
 
@@ -31,13 +31,28 @@
       .then(checkStatus)
       .then(response => response.json())
       .then((data) => {
-        console.log("YEEEEE" + data)
+        console.log("YEEEEE" + data.result)
         qs('#biggest-face').src = "/static/images/" + data.result + ".png";
+        qs('#biggest-face').src.max_width = "/static/images/" + data.result + ".png";
       })
       .catch(handleError);
   }
 
   function makePost(id) {
+    console.log("posting to reactions")
+    let room_id = getRoomId(id)
+    let url = "" + room_id + "/push"
+    let params = new FormData();
+    params.append("room_id", room_id);
+    params.append("react", getReact(id))
+    fetch(url, {method: "POST", body: params})
+      .then(checkStatus)
+      .then(response => response.json())
+      .then(displayData)
+      .catch(handleError);
+  }
+
+  function postToEmotions(id) {
     console.log("posting to emotion");
     let room_id = getRoomId(id);
     let params = new FormData();
