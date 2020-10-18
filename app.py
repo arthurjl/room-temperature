@@ -148,11 +148,21 @@ def room(id):
 
     return render_template('studentview.html', room_id=id, temp=f"{total * 100}%", showRabbit=True, numHidAnimals=3)
 
+@app.route('/room/<int:id>/react', methods=["GET"])
+def get_pace(id):
+    df = pd.read_sql(Reactions.query.filter(Reactions.date_created > datetime.utcnow() - timedelta(minutes = 5), Reactions.room_id == id).statement, db.session.bind)
+    result = int(df["reaction"].sum() / 3)
+    if result > 5:
+        result = 5
+    elif result < -5:
+        result = -5
+    return result
+
 @app.route('/room/<int:id>/active', methods=['GET'])
 def yeet(id):
     active = active_emotion(1, id)
-    print(active)
-    if (np.isnan):
+    print("EWHLKJSD F" + str(active))
+    if not isinstance(active, str):
         print("YEEE")
         return jsonify(result="happy")
     return jsonify(result=active)

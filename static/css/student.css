@@ -155,6 +155,9 @@ button{
   /* background-color: black; */
 }
 
+#biggest-face {
+  height: auto;
+  max-width: 200%;
 .the-zoo {
   display: flex;
   margin-left: 50px;
