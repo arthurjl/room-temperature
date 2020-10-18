@@ -3,51 +3,18 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Room Temperature</title>
+    <title>Welcome to RoomTemp!</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link href="{{url_for('static',filename='css/prof.css')}}" rel="stylesheet"/>
+    <link href="{{url_for('static',filename='css/welcome.css')}}" rel="stylesheet"/>
   </head>
   <body>
-    <h1>Your <span class="class-color">CSE 440</span> Room Temperature</h1>
-    <h2>Link:</h2>
-    <div class="content">
-      <div class="temp-box">
-        <div class="temp-numbers">
-          <div class="numbers">
-            <p>80</p>
-            <p>40</p>
-            <p>0</p>
-          </div>
-          <div class="dashes">
-            <div class="long-dash-clear"></div>
-            <div class="long-dash"></div>
-            <div class="dash"></div>
-            <div class="dash"></div>
-            <div class="dash"></div>
-            <div class="long-dash"></div>
-            <div class="dash"></div>
-            <div class="dash"></div>
-            <div class="dash"></div>
-            <div class="long-dash"></div>
-
-          </div>
+    <div id="main">
+      <div id="inner">
+        <div id="intro">
+          <h1>RoomTemp</h1>
+          <p class="subtitle">Satisfactory online learning for both instructors and students</p>
         </div>
-        <div class="temp-visual">
-          <div class="thermometer">
-          </div>
-        </div>
-      </div>
-      <div class="status">
-        <div class="reactions"></div>
-        <div class="pace-status"></div>
-        <div class="end-button"></div>
       </div>
     </div>
-
-    {% block body %}{% endblock %}
-
-    <!-- Optional JavaScript -->
-    {% block script %}{% endblock %}
   </body>
-
 </html>

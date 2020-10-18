@@ -20,7 +20,11 @@ h2 {
 p {
   font-size: 16pt;
   font-weight: bold;
+}
 
+.end-session {
+  color: white;
+  font-weight: lighter;
 }
 
 .class-color {
@@ -112,6 +116,9 @@ p {
 
 .end-button {
   background-color: #FF613F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pace-status, .end-button {
