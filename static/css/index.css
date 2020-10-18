@@ -66,11 +66,12 @@ input[type=text]:focus + .label-text{
 }
 
 #inner{
+  position: absolute;
   grid-area: center;
   align-self: center;
   justify-self: center;
   height: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-45%);
 }
 
 #intro{
