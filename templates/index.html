@@ -4,27 +4,30 @@
   <head>
     <meta charset="UTF-8">
     <title>Welcome to RoomTemp!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="{{url_for('static',filename='css/index.css')}}" rel="stylesheet"/>
+    <script defer src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
+    <script defer src="/static/css/scripts/index.js"></script>
   </head>
   <body>
-    <div id="main">
-      <div id="inner">
-        <div id="intro">
-          <h1>Welcome to RoomTemp!</h1>
-        </div>
-        <div id="subtitle">
-          <p class="subtitle">Creating a satisfactory online learning for both instructors and students</p>
-        </div>
-        <form id="course">
-          <label>
-            <input type="text" required/>
-            <div class="label-text">Course Name</div>
-          </label>
-          <button>Start</button>
-        </form>
+    <main id="swup" class="transition-fade">
+      <div id="main">
+        <div id="inner">
+          <div id="intro">
+            <h1>Welcome to RoomTemp!</h1>
+          </div>
+          <div id="course">
+            <form>
+              <label>
+                <input type="text" required/>
+                <div class="label-text">Course Name</div>
+              </label>
+              <a href="/room/5" class="btn btn-light">Start</a>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   </body>
 </html>
