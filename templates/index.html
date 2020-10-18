@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Welcome to RoomTemp!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="{{url_for('static',filename='css/index.css')}}" rel="stylesheet"/>
     <script defer src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>
@@ -22,7 +23,7 @@
                 <input type="text" required/>
                 <div class="label-text">Course Name</div>
               </label>
-              <button href="/templates/profview.html">Start</button>
+              <a href="/templates/profview.html" class="btn btn-light">Start</a>
             </form>
           </div>
         </div>
