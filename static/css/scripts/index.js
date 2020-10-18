@@ -5,6 +5,6 @@ const swup = new Swup();
 	window.addEventListener("load", init);
 
 	function init() {
-		print("Hello World");
+		console.log("Hello World");
 	}
 })();
