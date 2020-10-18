@@ -1,0 +1,104 @@
+body {
+  background-color: skyblue;
+  font-family: "Montserrat", sans-serif;
+}
+
+label{
+  display: block;
+  letter-spacing: 4px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+form{
+  text-align: center;
+}
+
+#main{
+  display: grid;
+  grid-template-columns: .5fr 2fr .5fr;
+  grid-gap: 10px;
+  grid-template-areas: ". center .";
+  height: 100%;        
+}
+
+#inner{
+  grid-area: center;
+  align-self: center;
+  justify-self: center;
+  height: 50%;
+}
+
+#intro{
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+#subtitle{
+  animation: pop .5s ease-in-out 2s forwards;
+  opacity: 0;
+}
+
+#course{
+  animation: fadeIn 1s ease-in-out 3.5s forwards;
+  opacity: 0;
+}
+
+.label-text{
+  color: gray;
+  cursor: text;
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase + transform(translateY(-34px));
+  transition: all 0.3s
+}
+
+input[type=text]{
+  width: 200px;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 2px solid gray;
+  color: white;
+  font-size: 36px;
+  letter-spacing: -1px;
+  outline: 0;
+  padding: 5px 20px;
+  text-align: center;
+  background-color: transparent;
+  transition: all 0.3s
+}
+
+input[type=text]:focus + .label-text{
+  color: #F0F0F0;
+  font-size: 13px + transform(translateY(-74px));
+}
+
+@keyframes fadeIn{
+  from{
+      transform: translateY(-30px);
+      opacity: 0;
+  }
+  to{
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes pop{
+  /* taken from http://angrytools.com/css/animation/ for bounce-in animation*/
+  0%{
+    opacity: 0;
+    transform: scale(.3);
+  }
+  50%{
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  70%{
+    transform: scale(0.9);
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
