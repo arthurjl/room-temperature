@@ -167,7 +167,7 @@ button{
 .the-zoo {
   display: flex;
   margin-left: 50px;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-direction: row;
 }
 
@@ -177,9 +177,43 @@ button{
   display: flex;
 }
 
+:root {
+  --displayRabbit: none;
+  --displayTurtle: inline;
+  --numAnimals: 2;
+}
+
 .animal img {
   max-width: 100%;
   height: auto;
+}
+
+.turtle {
+  display: var(--displayTurtle);
+}
+
+.rabbit {
+  display: var(--displayRabbit);
+}
+
+.animal_one {
+  opacity: min(max(var(--numAnimals), 0), 1)
+}
+
+.animal_two {
+  opacity: min(max(var(--numAnimals) - 1, 0), 1)
+}
+
+.animal_three {
+  opacity: min(max(var(--numAnimals) - 2, 0), 1)
+}
+
+.animal_four {
+  opacity: min(max(var(--numAnimals) - 3, 0), 1)
+}
+
+.animal_five {
+  opacity: min(max(var(--numAnimals) - 4, 0), 1)
 }
 
 .end-button {

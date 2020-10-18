@@ -149,7 +149,7 @@ def room(id):
     total = df["reaction"].sum() / len(df) if len(df) > 0 else 0
     print(total)
 
-    return render_template('studentview.html', room_id=id, temp=f"{total * 100}%")
+    return render_template('studentview.html', room_id=id, temp=f"{total * 100}%", showRabbit=True, numHidAnimals=3)
 
 @app.route('/room/<int:id>/react', methods=["GET"])
 def get_pace(id):
@@ -159,7 +159,7 @@ def get_pace(id):
         result = 5
     elif result < -5:
         result = -5
-    return result
+    return jsonify(result=result)
 
 @app.route('/room/<int:id>/active', methods=['GET'])
 def yeet(id):

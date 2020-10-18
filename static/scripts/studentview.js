@@ -7,10 +7,12 @@
   function init() {
     updateBigFace()
     udpateTherm1("#happy_button")
+    updateAnimals()
 
     const interval = setInterval(function() {
       udpateTherm1("#happy_button")
       updateBigFace()
+      updateAnimals()
     }, 500);
 
     qs("#happy_button").addEventListener("click", () => postToEmotions("#happy_button"));
@@ -21,6 +23,32 @@
     qs("#slow_button").addEventListener("click", () => makePost("#slow_button"));
     qs("#fast_button").addEventListener("click", () => makePost("#fast_button"));
 
+  }
+
+  function updateAnimals() {
+    let room_id = getRoomId("#happy_button");
+    let param = "" + room_id + "/react";
+
+    fetch(param)
+    .then(checkStatus)
+    .then(response => response.json())
+    .then((data) => {
+      console.log("LKFJSDELFJSD \n\n\n" + data.result)
+      let goal = parseInt(data.result)
+      let amount = Math.abs(goal)
+      console.log("YAEA OKAY GOAL " + goal)
+      document.documentElement.style.setProperty('--numAnimals', amount);
+      console.log("ARE YOU HAPAPYAA")
+      if (goal > 0) {  // Rabbit
+        document.documentElement.style.setProperty('--displayRabbit', 'inline');
+        document.documentElement.style.setProperty('--displayTurtle', 'none');
+      } else {
+        document.documentElement.style.setProperty('--displayRabbit', 'none');
+        document.documentElement.style.setProperty('--displayTurtle', 'inline');
+      }
+
+    })
+    .catch(handleError);
   }
 
   function updateBigFace() {
