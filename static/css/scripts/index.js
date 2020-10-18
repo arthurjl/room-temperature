@@ -5,7 +5,7 @@ const swup = new Swup();
 	window.addEventListener("load", init);
 
 	function init() {
-		var btn = ui.btn;
+		var btn = qs(".btn-light");
 		btn.addEventListener('click', saveData);
 	}
 
