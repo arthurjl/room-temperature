@@ -53,7 +53,7 @@
     } else if (react_id == 3) {
       reaction = "angry";
     } else {
-      reaction = "surprised";
+      reaction = "surprise";
     }
     params.append(reaction, 1.0)
     let url = "../emotions"
