@@ -99,7 +99,7 @@ p {
 }
 
 .thermometer {
-  height: 20%;
+  height: 100%;
   width: 60px;
   border-radius: 40px;
   background-color: #72C6EA;

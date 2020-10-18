@@ -48,13 +48,21 @@ class Emotions(db.Model):
 @app.route('/emotions', methods=["POST", "GET"])
 def record_emotion():
     if request.method == "GET":
-        emotions = Emotions.query.all()
-        active = active_emotion(1, 1)
-        temperature = emotion_to_sentiment(3, 1)
-        return render_template('emotionsdb.html', emotions=emotions, active=active, temperature=temperature)
+        
+        emotions_all = Emotions.query.all()
+        active = active_emotion(1, 5)
+        temperature = emotion_to_sentiment(3, 5)
+        return render_template('emotionsdb.html', emotions=emotions_all, active=active, temperature=temperature)
     else:
-        print(request.form)
-        emotions_recording = Emotions(**request.form)
+        print("hello")
+        data = {}
+        for k, v in request.form.items():
+            if k in emotions:
+                data[k] = float(v)
+            else:
+                data[k] = int(v)
+        print(data)
+        emotions_recording = Emotions(**data)
         db.session.add(emotions_recording)
         db.session.commit()
         return str(emotions_recording)
@@ -92,6 +100,8 @@ def active_emotion(mins, id, exclude_neutral=True):
     return avg_emotion_vec.idxmax(axis=1)
 
 def recent_emotion_average(mins, id):
+    print("querying database with the following params")
+    print(mins, id)
     df = pd.read_sql(Emotions.query.filter(Emotions.date_created > datetime.utcnow() - timedelta(minutes = mins), Emotions.room_id == id).statement, db.session.bind)
     print(df)
     return df[emotions].mean()
@@ -158,6 +168,7 @@ def stuff(id):
     # total = df["reaction"].sum() / len(df) * 100 if len(df) > 0 else 0
     # return jsonify(result=total)
     result = emotion_to_sentiment(3, id) * 100
+    print(f"looking for stuff in {id}")
     print (result)
     return jsonify(result=result)
 
