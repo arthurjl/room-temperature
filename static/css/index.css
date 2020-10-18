@@ -15,6 +15,7 @@ body {
   grid-area: center;
   align-self: center;
   justify-self: center;
+  height: 60%;
 }
 
 #intro{
@@ -25,6 +26,26 @@ body {
 #subtitle{
   animation: pop .5s ease-in-out 2s forwards;
   opacity: 0;
+}
+
+#class-input{
+  animation: fadeIn 1s ease-in-out 3.5s forwards;
+  opacity: 0;
+}
+
+.class-input{
+  width: 100px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+  padding: 15px 20px 15px 20px;
+  transition: width 0.5s ease-in-out;
+}
+
+.class-input:focus{
+  width: 75%;
 }
 
 @keyframes fadeIn{
