@@ -45,6 +45,7 @@ p {
   width: 30vw;
   top: 185px;
   border-radius: 40px;
+  padding: 15px;
 }
 
 .temp-numbers {
@@ -92,13 +93,26 @@ p {
   align-items: center;
   justify-content: center;
   width: 50%;
+  position: relative;
+  height: 100%;
 }
 
 .thermometer {
-  height: 20%;
+  height: 100%;
   width: 60px;
   border-radius: 40px;
-  background-color: skyblue;
+  background-color: pink;
+  bottom: 0;
+  position: absolute;
+}
+
+.thermometer2 {
+  width: 60px;
+  border-radius: 40px;
+  background-color: red;
+  bottom: 0;
+  position: absolute;
+  transition: height 0.25s ease-in;
 }
 
 .status {
