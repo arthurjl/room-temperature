@@ -1,3 +1,4 @@
+import math
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
@@ -8,6 +9,8 @@ import pandas as pd
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///temperature.db'
 db = SQLAlchemy(app)
+
+emotions = ["angry", "happy", "sad", "surprise", "neutral"]
 
 class Reactions(db.Model):
     __tablename__ = 'Reactions'
@@ -44,13 +47,51 @@ class Emotions(db.Model):
 def record_emotion():
     if request.method == "GET":
         emotions = Emotions.query.all()
-        return render_template('emotionsdb.html', emotions=emotions)
+        active = active_emotion(3, 1)
+        temperature = emotion_to_sentiment(3, 1)
+        print(active, temperature)
+        return render_template('emotionsdb.html', emotions=emotions, active=active, temperature=temperature)
     else:
         print(request.form)
         emotions_recording = Emotions(**request.form)
         db.session.add(emotions_recording)
         db.session.commit()
         return str(emotions_recording)
+
+def emotion_to_sentiment(mins, id, sqrt=True, weight=1.5):
+    avg_emotion_vec = recent_emotion_average(mins, id)
+    if sqrt:
+        avg_emotion_vec = avg_emotion_vec.apply(math.sqrt)
+
+    # sentiment weights
+    happy = 1
+    surprise = 1 / math.sqrt(2)
+    sad = -1
+    angry = -1 / math.sqrt(2)
+
+    # mean temperature
+    mean = 0.7
+
+    # let neutral = 1.0 to be the mean temperature
+    # multiply each emotion by the weight to determine the amount of change
+    neg_multiplier = 1.5
+    temp = mean + weight * (avg_emotion_vec["happy"] * happy + avg_emotion_vec["surprise"] 
+        * surprise + neg_multiplier * (avg_emotion_vec["sad"] * sad + avg_emotion_vec["angry"] * angry))
+
+    # if temp > 1:
+    #     temp = 1
+    return temp
+
+def active_emotion(mins, id, exclude_neutral=True):
+    avg_emotion_vec = recent_emotion_average(mins, id)
+    if exclude_neutral:
+        return avg_emotion_vec.drop(columns=["neutral"]).idxmax(axis=1)
+    return avg_emotion_vec.idxmax(axis=1)
+
+def recent_emotion_average(mins, id):
+    df = pd.read_sql(Emotions.query.filter(Emotions.date_created > datetime.utcnow() - timedelta(minutes = mins), Emotions.room_id == id).statement, db.session.bind)
+    print(df)
+    return df[emotions].mean()
 
 
 @app.route('/', methods=['POST', 'GET'])
