@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Room Temperature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/student.css')}}" rel="stylesheet"/>
+    <script src="{{url_for('static',filename='scripts/studentview.js')}}"></script>
+    <style>
+      /* .thermometer2 {
+        height: {{ temp }};
+      } */
+    </style>
+  
+  </head>
+  <body>
+    <h1>Your <span class="class-color">CSE 440</span> Room Temperature</h1>
+    <h2>Link:</h2>
+    <div class="content">
+      <div class="temp-box">
+        <div class="temp-numbers">
+          <div class="numbers">
+            <p>80</p>
+            <p>40</p>
+            <p>0</p>
+          </div>
+          <div class="dashes">
+            <div class="long-dash-clear"></div>
+            <div class="long-dash"></div>
+            <div class="dash"></div>
+            <div class="dash"></div>
+            <div class="dash"></div>
+            <div class="long-dash"></div>
+            <div class="dash"></div>
+            <div class="dash"></div>
+            <div class="dash"></div>
+            <div class="long-dash"></div>
+
+          </div>
+        </div>
+        <div class="temp-visual">
+          <div class="thermometer">
+          </div>
+          <div class="thermometer2">
+          </div>
+        </div>
+      </div>
+      <div class="status">
+        <div class="reactions">
+          <!-- <div class="reaction-button">
+            <label for="yeet">
+              <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg"/>
+            </label>
+            <form action="/room/{{room_id}}" method="POST">
+              <input type="submit" name="react" value="1" id="yeet">
+            </form>
+          </div> -->
+
+          <button id="yipyip" value="{{room_id}}" name=1>
+            Hello there
+          </button>
+
+          <button id="yopyop" value="{{room_id}}" name=0>
+            Goodbye there
+          </button>
+
+          <form action="/room/{{room_id}}" method="POST">
+            <input type="submit" name="react" value="0" id="yoink">
+          </form>
+          <form style="width:50px;">
+            <input type="button" value="what's up">
+          </form>
+          <form style="width:50px;">
+            <input type="button" value="what's up">
+          </form>
+        </div>
+        <div class="pace-status"></div>
+      </div>
+    </div>
+
+    {% block body %}{% endblock %}
+
+    <!-- Optional JavaScript -->
+    {% block script %}{% endblock %}
+  </body>
+
+</html>
