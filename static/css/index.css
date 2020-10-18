@@ -1,24 +1,58 @@
-.learnMoreButton button {
-  color: white;
-  text-transform: uppercase;
-  background-color: #eb4507 !important;
-  border: 3px solid #eb4507; /* #eb4507 */
-  z-index: 2;
-  padding: 15px 15px;
-  margin: 35px;
-    -webkit-transition-duration: 0.3s; 
-  transition-duration: 0.3s;
-  cursor: pointer;
-  font-size: 15px;
-  font-family: "Orbitron", sans-serif;
-  font-weight: bold;
+body {
+  background-color: skyblue;
+  font-family: "Montserrat", sans-serif;
 }
 
-.learnMoreButton button:hover {
-   color: white;
+#main{
+  display: grid;
+  grid-template-columns: .5fr 2fr .5fr;
+  grid-gap: 10px;
+  grid-template-areas: ". center .";
+  height: 100%;        
 }
 
-.learnMoreButton button:hover {
-  border-color: white;
-    background-color: rgba(0,0,0,0) !important;
- }
+#inner{
+  grid-area: center;
+  align-self: center;
+  justify-self: center;
+}
+
+#intro{
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+#subtitle{
+  animation: pop .5s ease-in-out 2s forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn{
+  from{
+      transform: translateY(-30px);
+      opacity: 0;
+  }
+  to{
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+@keyframes pop{
+  /* taken from http://angrytools.com/css/animation/ for bounce-in animation*/
+  0%{
+    opacity: 0;
+    transform: scale(.3);
+  }
+  50%{
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  70%{
+    transform: scale(0.9);
+  }
+  100%{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
