@@ -6,10 +6,11 @@
     <title>Room Temperature</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="{{url_for('static',filename='css/student.css')}}" rel="stylesheet"/>
+    <script src="{{url_for('static',filename='scripts/studentview.js')}}"></script>
     <style>
-      .thermometer2 {
+      /* .thermometer2 {
         height: {{ temp }};
-      }
+      } */
     </style>
   
   </head>
@@ -47,14 +48,22 @@
       </div>
       <div class="status">
         <div class="reactions">
-          <div class="reaction-button">
+          <!-- <div class="reaction-button">
             <label for="yeet">
               <img src="https://icon-library.net/images/upload-photo-icon/upload-photo-icon-21.jpg"/>
             </label>
             <form action="/room/{{room_id}}" method="POST">
               <input type="submit" name="react" value="1" id="yeet">
             </form>
-          </div>
+          </div> -->
+
+          <button id="yipyip" value="{{room_id}}" name=1>
+            Hello there
+          </button>
+
+          <button id="yopyop" value="{{room_id}}" name=0>
+            Goodbye there
+          </button>
 
           <form action="/room/{{room_id}}" method="POST">
             <input type="submit" name="react" value="0" id="yoink">

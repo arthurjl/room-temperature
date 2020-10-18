@@ -112,6 +112,7 @@ p {
   background-color: red;
   bottom: 0;
   position: absolute;
+  transition: height 0.25s ease-in;
 }
 
 .status {
