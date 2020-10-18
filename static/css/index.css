@@ -3,6 +3,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+h1{
+  font-size: 48px;
+}
+
 label{
   display: block;
   letter-spacing: 4px;
@@ -66,6 +70,7 @@ input[type=text]:focus + .label-text{
   align-self: center;
   justify-self: center;
   height: 50%;
+  transform: translateY(-50%);
 }
 
 #intro{
@@ -74,14 +79,8 @@ input[type=text]:focus + .label-text{
   text-align: center;
 }
 
-#subtitle{
-  animation: pop .5s ease-in-out 1.5s forwards;
-  opacity: 0;
-  text-align: center;
-}
-
 #course{
-  animation: fadeIn 1s ease-in-out 3s forwards;
+  animation: fadeIn 1s ease-in-out 1.5s forwards;
   opacity: 0;
 }
 
